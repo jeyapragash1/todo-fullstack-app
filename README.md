@@ -51,7 +51,7 @@ This project demonstrates RESTful API design, CRUD operations, and clean full-st
 ## ⚙️ Setup Instructions
 
 ### 1. Clone the repository
-git clone <your-repo-link>  
+git clone https://github.com/jeyapragash1/todo-fullstack-app.git 
 cd todo-fullstack-app  
 
 ---
