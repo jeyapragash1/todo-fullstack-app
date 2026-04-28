@@ -1,120 +1,101 @@
 # 📝 TODO Full-Stack Application
 
-A full-stack TODO application built using React, Node.js, Express, and MongoDB.  
-This project demonstrates RESTful API design, CRUD operations, and clean full-stack architecture.
+A production-ready, feature-rich TODO application built using a modern React (Vite) frontend and an Express + MongoDB backend. 
+
+This project was built to demonstrate a deep understanding of RESTful API design, full-stack component architecture, and modern UX engineering.
 
 ---
 
-## 🚀 Features
+## ✨ Features & Bonus Implementations
 
-- Create a new TODO
-- View all TODOs
-- Edit TODO (title & description)
-- Mark TODO as completed / uncompleted
-- Delete TODO
-- Responsive and clean UI
-- Proper error handling and validation
+Beyond the core CRUD requirements, this application implements several advanced features:
+
+- **Optimistic UI Updates:** Toggling and deleting tasks updates the React state instantly before the server responds, making the app feel native and lightning-fast. It automatically rolls back if the API call fails.
+- **Modern UI/UX (Glassmorphism):** The UI was completely redesigned using a premium "Dark Glassmorphism" aesthetic with responsive CSS Grid layouts, animated mesh-gradient backgrounds, and micro-animations (hover lifts, custom animated checkboxes).
+- **Graceful Error Handling:** Full form validation on both the client and server. Errors display as animated, user-friendly banners rather than breaking the application.
+- **Component-Level Architecture:** Instead of a monolithic stylesheet, CSS is strictly co-located with its respective React components (e.g., `TodoItem.jsx` pairs with `TodoItem.css`) to ensure maintainability and prevent merge conflicts.
+- **Reusable Modals:** Utilizing React `children` props to create a DRY, generic `<Modal />` wrapper that handles the backdrop blur and animations for both Edit and Confirm Delete popups.
+- **Monorepo Setup:** Both `client` and `server` are neatly organized within a single repository for easy setup and testing.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- React.js
-- Axios
-- Tailwind CSS (or any UI library)
-
-### Backend
-- Node.js
-- Express.js
-
-### Database
-- MongoDB (Mongoose)
+- **Frontend:** React 19, Vite, Axios, Vanilla CSS (Flexbox/CSS Grid)
+- **Backend:** Node.js, Express.js, Cors
+- **Database:** MongoDB Atlas, Mongoose ODM
 
 ---
 
 ## 📂 Project Structure
-
-/backend
-  /controllers
-  /routes
-  /models
-  server.js
-
-/frontend
-  /components
-  /pages
-  /services
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the repository
-git clone https://github.com/jeyapragash1/todo-fullstack-app.git 
-cd todo-fullstack-app  
+```text
+todo-fullstack-app/
+├── client/                 # React Frontend
+│   ├── src/
+│   │   ├── components/     # Co-located components & CSS
+│   │   ├── services/       # API abstraction layer
+│   │   └── App.jsx         # Main orchestration & state
+│   └── README.md           # Client-specific docs & limitations
+│
+└── server/                 # Express Backend
+    ├── controllers/        # Request handling logic
+    ├── models/             # Mongoose schemas
+    ├── routes/             # API routing
+    ├── server.js           # Express configuration
+    └── README.md           # Server-specific docs & DB notes
+```
 
 ---
 
-### 2. Backend Setup
-cd backend  
-npm install  
+## ⚙️ Environment Setup
 
-Create a `.env` file and add:  
-PORT=5000  
-MONGO_URI=your_mongodb_connection_string  
+You must configure `.env` files in both the `client` and `server` directories before running the application.
 
-Run backend:  
-npm run dev  
+### Backend (`server/.env`)
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+CORS_ORIGIN=http://localhost:5173
+NODE_ENV=development
+```
 
----
-
-### 3. Frontend Setup
-cd frontend  
-npm install  
-npm run dev  
-
----
-
-## 🔌 API Endpoints
-
-GET /api/todos → Get all todos  
-POST /api/todos → Create new todo  
-PUT /api/todos/:id → Update todo  
-PATCH /api/todos/:id/done → Toggle done status  
-DELETE /api/todos/:id → Delete todo  
+### Frontend (`client/.env`)
+```env
+VITE_API_BASE_URL=http://localhost:5000/api/todos
+```
 
 ---
 
-## 🧠 Approach
+## 🚀 Run Locally
 
-The project was developed by first defining the database schema and API structure, followed by backend implementation and frontend integration. Each feature was tested to ensure smooth interaction between client and server.
+### 1) Start the Backend
+```bash
+cd server
+npm install
+npm run dev
+```
 
----
+### 2) Start the Frontend
+```bash
+cd client
+npm install
+npm run dev
+```
 
-## ⚠️ Assumptions & Limitations
-
-- No authentication system is implemented  
-- Basic validation is applied  
-- Designed for single-user usage  
-
----
-
-## 🎥 Demo
-
-(Add your demo video link here)
-
----
-
-## 📌 Future Improvements
-
-- Add authentication (JWT)  
-- Add search and filtering  
-- Improve UI/UX with animations  
-- Pagination support  
+Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🙌 Author
+## 📡 API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/todos` | Fetch all TODOs sorted by creation date |
+| `POST` | `/api/todos` | Create a new TODO |
+| `PUT` | `/api/todos/:id` | Update a TODO's title and description |
+| `PATCH` | `/api/todos/:id/done` | Toggle a TODO's completion status |
+| `DELETE`| `/api/todos/:id` | Delete a TODO |
 
-Kisho Jeyapragash
+---
+
+## 📝 Notes
+- Please see `client/README.md` and `server/README.md` for specific assumptions, limitations, and detailed setup instructions as requested in the assignment parameters.
