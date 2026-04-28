@@ -112,41 +112,44 @@ function App() {
       </header>
 
       <main className="app-main">
-        <div className="container">
-          {error && (
-            <div className="error-banner">
-              <span>{error}</span>
-              <button onClick={() => setError("")} className="btn-close">
-                ✕
-              </button>
-            </div>
-          )}
+        <div className="dashboard-layout">
+          <aside className="dashboard-sidebar">
+            <section className="form-section">
+              <h2>Add a New TODO</h2>
+              <TodoForm onSubmit={handleAddTodo} isLoading={isLoading} />
+            </section>
+          </aside>
 
-          <section className="form-section">
-            <h2>Add a New TODO</h2>
-            <TodoForm onSubmit={handleAddTodo} isLoading={isLoading} />
-          </section>
-
-          <section className="list-section">
-            <div className="list-header">
-              <h2>Your TODOs</h2>
-              {todos.length > 0 && (
-                <span className="todo-count">
-                  {todos.filter((t) => !t.done).length} of {todos.length} left
-                </span>
+          <section className="dashboard-content">
+            {error && (
+              <div className="error-banner">
+                <span>{error}</span>
+                <button onClick={() => setError("")} className="btn-close">
+                  ✕
+                </button>
+              </div>
+            )}
+            <div className="list-section">
+              <div className="list-header">
+                <h2>Your TODOs</h2>
+                {todos.length > 0 && (
+                  <span className="todo-count">
+                    {todos.filter((t) => !t.done).length} of {todos.length} left
+                  </span>
+                )}
+              </div>
+              {isLoading && todos.length === 0 ? (
+                <div className="loading">Loading TODOs...</div>
+              ) : (
+                <TodoList
+                  todos={todos}
+                  onUpdate={handleUpdateTodo}
+                  onToggleDone={handleToggleDone}
+                  onDelete={handleDeleteTodo}
+                  isLoading={isLoading}
+                />
               )}
             </div>
-            {isLoading && todos.length === 0 ? (
-              <div className="loading">Loading TODOs...</div>
-            ) : (
-              <TodoList
-                todos={todos}
-                onUpdate={handleUpdateTodo}
-                onToggleDone={handleToggleDone}
-                onDelete={handleDeleteTodo}
-                isLoading={isLoading}
-              />
-            )}
           </section>
         </div>
       </main>

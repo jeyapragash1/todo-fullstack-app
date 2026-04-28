@@ -47,8 +47,35 @@
 }
 
 .container {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.dashboard-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.dashboard-sidebar {
+  flex: 0 0 350px;
+  position: sticky;
+  top: 30px;
+}
+
+.dashboard-content {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .dashboard-sidebar {
+    flex: none;
+    width: 100%;
+    position: static;
+  }
 }
 
 /* Glassmorphism Containers */
