@@ -1,120 +1,76 @@
 # 📝 TODO Full-Stack Application
 
-A full-stack TODO application built using React, Node.js, Express, and MongoDB.  
-This project demonstrates RESTful API design, CRUD operations, and clean full-stack architecture.
+Production-ready TODO app with React (Vite) frontend and Express + MongoDB backend.
 
----
+## Features
+- Create, view, update, toggle, and delete TODO items
+- Form validation on frontend and backend
+- Reusable modal UI for edit and delete confirmation
+- Environment-based configuration for frontend and backend
 
-## 🚀 Features
+## Tech Stack
+- Frontend: React, Vite, Axios
+- Backend: Node.js, Express, Mongoose
+- Database: MongoDB Atlas
 
-- Create a new TODO
-- View all TODOs
-- Edit TODO (title & description)
-- Mark TODO as completed / uncompleted
-- Delete TODO
-- Responsive and clean UI
-- Proper error handling and validation
+## Project Structure
+```
+todo-fullstack-app/
+  client/
+    src/
+      components/
+      services/
+      App.jsx
+    .env.example
+  server/
+    controllers/
+    models/
+    routes/
+    server.js
+    .env.example
+```
 
----
+## Environment Setup
 
-## 🛠️ Tech Stack
+### Backend (`server/.env`)
+```
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+CORS_ORIGIN=http://localhost:5173
+NODE_ENV=development
+```
 
-### Frontend
-- React.js
-- Axios
-- Tailwind CSS (or any UI library)
+### Frontend (`client/.env`)
+```
+VITE_API_BASE_URL=http://localhost:5000/api/todos
+```
 
-### Backend
-- Node.js
-- Express.js
+## Run Locally
 
-### Database
-- MongoDB (Mongoose)
+### 1) Start backend
+```bash
+cd server
+npm install
+npm run dev
+```
 
----
+### 2) Start frontend
+```bash
+cd client
+npm install
+npm run dev
+```
 
-## 📂 Project Structure
+Open `http://localhost:5173`.
 
-/backend
-  /controllers
-  /routes
-  /models
-  server.js
+## API Endpoints
+- `GET /api/todos`
+- `POST /api/todos`
+- `PUT /api/todos/:id`
+- `PATCH /api/todos/:id/done`
+- `DELETE /api/todos/:id`
 
-/frontend
-  /components
-  /pages
-  /services
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the repository
-git clone https://github.com/jeyapragash1/todo-fullstack-app.git 
-cd todo-fullstack-app  
-
----
-
-### 2. Backend Setup
-cd backend  
-npm install  
-
-Create a `.env` file and add:  
-PORT=5000  
-MONGO_URI=your_mongodb_connection_string  
-
-Run backend:  
-npm run dev  
-
----
-
-### 3. Frontend Setup
-cd frontend  
-npm install  
-npm run dev  
-
----
-
-## 🔌 API Endpoints
-
-GET /api/todos → Get all todos  
-POST /api/todos → Create new todo  
-PUT /api/todos/:id → Update todo  
-PATCH /api/todos/:id/done → Toggle done status  
-DELETE /api/todos/:id → Delete todo  
-
----
-
-## 🧠 Approach
-
-The project was developed by first defining the database schema and API structure, followed by backend implementation and frontend integration. Each feature was tested to ensure smooth interaction between client and server.
-
----
-
-## ⚠️ Assumptions & Limitations
-
-- No authentication system is implemented  
-- Basic validation is applied  
-- Designed for single-user usage  
-
----
-
-## 🎥 Demo
-
-(Add your demo video link here)
-
----
-
-## 📌 Future Improvements
-
-- Add authentication (JWT)  
-- Add search and filtering  
-- Improve UI/UX with animations  
-- Pagination support  
-
----
-
-## 🙌 Author
-
-Kisho Jeyapragash
+## Notes
+- Client reads API URL from `client/.env` (`VITE_API_BASE_URL`)
+- Server reads MongoDB and runtime config from `server/.env`
+- Do not commit real credentials to git
